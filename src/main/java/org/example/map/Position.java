@@ -17,6 +17,11 @@ public class Position {
         this.y = pos.getY();
     }
 
+    // 좌표를 벗어나는지 검증
+    public boolean isPossible(Position pos) {
+        return pos.x > 0 && pos.y > 0 && pos.x < 9 && pos.y < 9;
+    }
+
     public int getX() {
         return x;
     }

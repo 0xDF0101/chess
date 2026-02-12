@@ -10,6 +10,7 @@ public abstract class Piece {
 
     protected Position position;
     protected final Color color;
+    protected List<Position> attackZones; // 이동 가능한 경로
 
     public Piece(Position pos, Color color) {
         this.position = new Position(pos);
@@ -26,7 +27,7 @@ public abstract class Piece {
     }
 
     public abstract void move(Position target);
-    public abstract List<Position> getAttackZone(); // 해당 기물이 현재 영향력을 행사하는(또는 이동할 수 있는) 칸을 반환함
+    public abstract void calculateAttackZone(); // 해당 기물이 현재 영향력을 행사하는(또는 이동할 수 있는) 칸을 계산해서 attackZones에 반환함
     public abstract String render(); // 기물을 어떤 문자로 표현할지?
 
 

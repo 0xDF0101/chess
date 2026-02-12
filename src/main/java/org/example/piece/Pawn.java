@@ -16,8 +16,8 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public List<Position> getAttackZone() {
-        return List.of();
+    public void calculateAttackZone() {
+
     }
 
     @Override

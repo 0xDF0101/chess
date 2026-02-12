@@ -5,11 +5,16 @@ import org.example.map.Position;
 import org.example.map.Square;
 import org.example.piece.Pawn;
 import org.example.piece.Piece;
+import org.example.piece.Rook;
 
+import java.nio.charset.CoderResult;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class ChessGame {
+    Scanner sc = new Scanner(System.in);
+    private String input;
 
     public static final List<Piece> pieceList = new ArrayList<>();
     // 현재 올라와있는 기물들의 리스트
@@ -23,14 +28,21 @@ public class ChessGame {
     public void start() {
         this.board = new Board();
 
-        Pawn pawn1 = new Pawn(new Position(4, 2), Color.WHITE);
+        Rook rook1 = new Rook(new Position(5, 5), Color.BLACK);
+        rook1.calculateAttackZone();
 
-        updateOccupier();
+        // 여기 위에 코드는 메서드로 옮겨야함
+        //---- 생성 끝 ----
 
 
-        render();
+        while(true) {
+            updateOccupier();
+            render();
 
+            System.out.print("> ");
+            input = sc.nextLine();
 
+        }
     }
 
     public static void addPiece(Piece piece) {
@@ -39,7 +51,7 @@ public class ChessGame {
     }
 
 
-
+    // 기물 위치를 업데이트함
     public void updateOccupier() {
         Square[][] squares = board.getSquares();
 

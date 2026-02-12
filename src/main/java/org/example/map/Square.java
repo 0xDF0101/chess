@@ -1,8 +1,10 @@
 package org.example.map;
 
+import lombok.Getter;
 import org.example.piece.Piece;
 
 public class Square {
+    @Getter
     private final Position squarePosition;
     private Piece occupier;
     private boolean isPresent;
