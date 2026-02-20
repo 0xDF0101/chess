@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.game.GameContext;
 import org.example.map.Board;
 import org.example.map.Position;
 import org.example.map.Square;
@@ -14,15 +15,10 @@ import java.util.Scanner;
 
 public class ChessGame {
     Scanner sc = new Scanner(System.in);
-    private String input;
+    private GameContext gameContext;
 
-    public static final List<Piece> pieceList = new ArrayList<>();
-    // 현재 올라와있는 기물들의 리스트
-
-    public Board board;
-
-    public ChessGame() {
-
+    public ChessGame(GameContext gameContext) {
+        this.gameContext = gameContext;
     }
 
     public void start() {
@@ -43,6 +39,10 @@ public class ChessGame {
             input = sc.nextLine();
 
         }
+    }
+
+    private void init() {
+
     }
 
     public static void addPiece(Piece piece) {

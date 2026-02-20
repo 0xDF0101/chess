@@ -2,19 +2,24 @@ package org.example.piece;
 
 import org.example.ChessGame;
 import org.example.Color;
+import org.example.game.GameContext;
 import org.example.map.Position;
 
 import java.util.List;
 
 public abstract class Piece {
 
+    protected GameContext context; // 기물이 알아야할 Board에 관한 정보
+
     protected Position position;
     protected final Color color;
     protected List<Position> attackZones; // 이동 가능한 경로
 
-    public Piece(Position pos, Color color) {
+    public Piece(Position pos, Color color, GameContext context) {
         this.position = new Position(pos);
         this.color = color;
+        this.context = context;
+
         ChessGame.addPiece(this); // 기물 리스트에 추가됨
     }
 
