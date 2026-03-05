@@ -1,5 +1,8 @@
 package org.example.game;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.example.ChessGame;
 import org.example.Color;
 import org.example.map.Board;
@@ -15,11 +18,15 @@ import java.util.List;
  * Board의 전체적인 흐름을 알아야 하는 기물들은 GameContext를 주입받으면 된다!
  */
 
+@Setter
+@Getter
 public class GameContext {
     // 모든 기물이 공유해야할 정보들!
     private Board board;
     private Color currentTurn;
     private List<Piece> pieceList = new ArrayList<>();
+
+
 
 }
 

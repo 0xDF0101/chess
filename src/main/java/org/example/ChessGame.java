@@ -15,47 +15,43 @@ import java.util.Scanner;
 
 public class ChessGame {
     Scanner sc = new Scanner(System.in);
-    private GameContext gameContext;
+    private GameContext context;
 
     public ChessGame(GameContext gameContext) {
-        this.gameContext = gameContext;
+        this.context = gameContext;
+    }
+
+    private void init() {
+
+        context.setBoard(new Board());
+
+        Rook rook1 = new Rook(new Position(5, 5), Color.BLACK, context);
+        rook1.calculateAttackZone();
+        Pawn pawn = new Pawn(new Position(3, 2), Color.WHITE, context);
+        rook1.calculateAttackZone();
     }
 
     public void start() {
-        this.board = new Board();
 
-        Rook rook1 = new Rook(new Position(5, 5), Color.BLACK);
-        rook1.calculateAttackZone();
-
-        // 여기 위에 코드는 메서드로 옮겨야함
-        //---- 생성 끝 ----
-
+        init();
 
         while(true) {
             updateOccupier();
             render();
 
             System.out.print("> ");
-            input = sc.nextLine();
+            String input = sc.nextLine();
 
         }
     }
 
-    private void init() {
-
-    }
-
-    public static void addPiece(Piece piece) {
-        pieceList.add(piece);
-        System.out.println();
-    }
 
 
     // 기물 위치를 업데이트함
     public void updateOccupier() {
-        Square[][] squares = board.getSquares();
+        Square[][] squares = context.getBoard().getSquares();
 
-        for(Piece piece : pieceList) {
+        for(Piece piece : context.getPieceList()) {
             Position pos = piece.getPosition();
             squares[pos.getX()][pos.getY()].setOccupier(piece);
             squares[pos.getX()][pos.getY()].setPresent(true);
@@ -63,7 +59,7 @@ public class ChessGame {
     }
 
     private void render() {
-        System.out.println(board.toString());
+        System.out.println(context.getBoard().toString());
     }
 
 }

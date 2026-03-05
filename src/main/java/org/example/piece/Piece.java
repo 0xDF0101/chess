@@ -1,5 +1,6 @@
 package org.example.piece;
 
+import lombok.Getter;
 import org.example.ChessGame;
 import org.example.Color;
 import org.example.game.GameContext;
@@ -7,6 +8,7 @@ import org.example.map.Position;
 
 import java.util.List;
 
+@Getter
 public abstract class Piece {
 
     protected GameContext context; // 기물이 알아야할 Board에 관한 정보
@@ -20,11 +22,7 @@ public abstract class Piece {
         this.color = color;
         this.context = context;
 
-        ChessGame.addPiece(this); // 기물 리스트에 추가됨
-    }
-
-    public Position getPosition() {
-        return position;
+        context.getPieceList().add(this);
     }
 
     public void setDead() {

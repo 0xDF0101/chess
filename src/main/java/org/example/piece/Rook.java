@@ -1,14 +1,15 @@
 package org.example.piece;
 
 import org.example.Color;
+import org.example.game.GameContext;
 import org.example.map.Board;
 import org.example.map.Position;
 
 import java.util.List;
 
 public class Rook extends Piece{
-    public Rook(Position pos, Color color) {
-        super(pos, color);
+    public Rook(Position pos, Color color, GameContext context) {
+        super(pos, color, context);
     }
 
     @Override
@@ -23,6 +24,6 @@ public class Rook extends Piece{
 
     @Override
     public String render() {
-        return "R";
+        return color == Color.WHITE ? "R" : "r";
     }
 }
